@@ -26,10 +26,6 @@ export const GET_COUNTRY = gql`
       phone
       currency
       emoji
-      languages {
-        name
-        native
-      }
     }
   }
 `;
