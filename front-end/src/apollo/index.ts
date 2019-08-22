@@ -22,6 +22,8 @@ export interface ICountry {
   emoji: string;
 }
 
+export type TCountries = [ICountry];
+
 const cache = new InMemoryCache();
 
 const typeDefs = gql`

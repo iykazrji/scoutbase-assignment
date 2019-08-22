@@ -9,24 +9,20 @@ import {
 } from "./styles";
 import RenderCountries from "./render-countries";
 import LoadingIndicatorComponent from "components/loading-indicator/loading-indicator-component";
-interface IRenderCountriesProps {
-  data: [{ name?: string }];
-  style?: {};
-  index: number;
+import { TCountries } from "apollo";
+
+interface ICountries {
+  countries: [TCountries];
 }
 
 const Section1 = () => {
-  const { data, loading, error } = useQuery(GET_ALL_COUNTRIES);
-  let countriesData = [];
-  if (data && !error && !loading) {
-    countriesData = data.countries;
-  }
+  const { data, loading, error } = useQuery<ICountries>(GET_ALL_COUNTRIES);
 
   return (
     <SectionWrapper>
       {loading ? <LoadingIndicatorComponent /> : null}
       {error ? <h4>An Error occured fetching Data</h4> : null}
-      {countriesData.length > 0 ? (
+      {data && data.countries && !loading && !error ? (
         <CountriesDataContainer
           mx="auto"
           width={[0.95, 0.9, 0.85, 0.7]}
@@ -34,7 +30,7 @@ const Section1 = () => {
           <SectionHeader>
             Scroll through our list of Countries. Click to view more details.
           </SectionHeader>
-          <RenderCountries data={countriesData} />
+          <RenderCountries data={data.countries} />
         </CountriesDataContainer>
       ) : null}
     </SectionWrapper>
