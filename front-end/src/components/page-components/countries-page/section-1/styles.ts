@@ -34,7 +34,7 @@ export const CountriesCardCell = Styled(Box)`
     }
 `;
 export const CountriesCardCellContent = Styled(Link)`
-    border: 1px solid rgba(250, 250, 250, 0.5);
+    border: 1px solid rgba(250, 250, 250, 0.25);
     padding: 1.5rem;
     height: 100%;
     display: block;
